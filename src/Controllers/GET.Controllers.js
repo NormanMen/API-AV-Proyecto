@@ -1,4 +1,6 @@
 const Conecction=require('../Settings/BDconf')
+const { Ubicacion }=require('../assest/DocConex')
+const path=require('path')
 
 function GetDataUsuario(req,res){
 
@@ -17,8 +19,15 @@ function GetDataUsuarioId(req,res){
         res.json(row);
     })
 }
+function GetDocumento(req,res){
+    const img=req.params.Name
+    const Ruta=path.join(Ubicacion(),'Doc',img);
+    return res.sendFile(Ruta);
+    //return res.sendFile();
+}
 
 module.exports={
     GetDataUsuario,
-    GetDataUsuarioId
+    GetDataUsuarioId,
+    GetDocumento,
 }
