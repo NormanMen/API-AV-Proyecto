@@ -110,13 +110,54 @@ function POSTTarea(req,res){
    })
 }
 function POSTSala(req,res){
-
+    const {
+        Nombre,
+        ID_materia,
+        ID_chat
+    }=req.body;
+    
+    let query=`INSERT INTO tb_salas VALUES ('${Math.round(Math.random()*(100000-0))+0}', '${Nombre}','${uuidv4()}','239','200');`;
+   
+    Conecction.query(query,(err,row,fields)=>{
+        if(!err){
+            return res.json(req.body)
+        }else{
+            return res.json({"Message":err})
+        }
+   })
 }
 function POSTNotificacion(req,res){
-
+    const {
+        Descripcion,
+        ID_usuario
+    }=req.body;
+    //INSERT INTO `tb_notificacion` VALUES ('45', 'Hola mundo', '1', curdate());
+    let query=`INSERT INTO tb_notificacion VALUES ('${Math.round(Math.random()*(100000-0))+0}', '${Descripcion}','${ID_usuario}', curdate()-1);`;
+   
+    Conecction.query(query,(err,row,fields)=>{
+        if(!err){
+            return res.json(req.body)
+        }else{
+            return res.json({"Message":err})
+        }
+   })
 }
 function POSTChat(req,res){
+    const {
+        Message,
+        ID_usuario,
+        ID_sala
+    }=req.body;
 
+    let query=`INSERT INTO tb_chat VALUES ('${Math.round(Math.random()*(100000-0))+0}', '${Message}',curdate()-1,'${ID_usuario}','${ID_sala}');`;
+   
+    Conecction.query(query,(err,row,fields)=>{
+        if(!err){
+            return res.json(req.body)
+        }else{
+            return res.json({"Message":err})
+        }
+   })
 }
 
 module.exports={
