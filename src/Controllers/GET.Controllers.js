@@ -1,5 +1,5 @@
 const Conecction=require('../Settings/BDconf')
-const { Ubicacion }=require('../assest/DocConex')
+const { Ubicacion }=require('../public/DocConex')
 const path=require('path')
 
 function GetDataUsuario(req,res){
@@ -21,7 +21,7 @@ function GetDataUsuarioId(req,res){
 }
 function GetDocumento(req,res){
     const img=req.params.Name
-    const Ruta=path.join(Ubicacion(),'Doc',img);
+    const Ruta=path.join(Ubicacion(),img);
     return res.sendFile(Ruta);
     //return res.sendFile();
 }

@@ -1,6 +1,8 @@
 const Conecction=require('../Settings/BDconf')
 const { v4:uuidv4 } =require('uuid')
 
+
+
 function POSTUsuario(req,res){
     
     const {
@@ -75,13 +77,17 @@ function POSTUnidad(req,res){
 }
 function POSTMateria(req,res){
     const {
+        myFile,
         Nombre,
         Imagen,
         ID_usuario
     }=req.body;
+
     
-    let query=`INSERT INTO tb_materias VALUES ('${Math.round(Math.random()*(100000-0))+0}', '${Nombre}','${uuidv4()}','${Imagen}','${ID_usuario}');`;
-   
+    
+    let query=`INSERT INTO tb_materias VALUES ('${Math.round(Math.random()*(100000-0))+0}', '${Nombre}','${uuidv4()}','${req.file.filename}','${ID_usuario}');`;
+    
+    
     Conecction.query(query,(err,row,fields)=>{
         if(!err){
             return res.json(req.body)
